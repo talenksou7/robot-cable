@@ -67,8 +67,8 @@ def linear_trajectory(start, end, steps=80):
     return [np.array(start) + (np.array(end)-np.array(start))*t
             for t in np.linspace(0,1,steps)]
 
-start_pos = [0,0,0]
-end_pos   = [0.2,0,-0.4]
+start_pos = [0,0,0.5]
+end_pos   = [0,0,-0.5]
 
 trajectory = linear_trajectory(start_pos,end_pos)
 
@@ -116,7 +116,6 @@ ax.set_xlabel('X (m)')
 ax.set_ylabel('Y (m)')
 ax.set_zlabel('Z (m)')
 
-ax.set_title("Cable Robot Simulation with Forces")
 
 # anchors
 ax.scatter(anchors[:,0],anchors[:,1],anchors[:,2],

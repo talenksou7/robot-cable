@@ -1,15 +1,26 @@
 import numpy as np
 
-# anchor points of the robot
-A1 = np.array([-0.25, -0.235, 0.5])
-A2 = np.array([ 0.25, -0.235, 0.5])
-A3 = np.array([ 0.25,  0.235, 0.5])
-A4 = np.array([-0.25,  0.235, 0.5])
+# Robot frame dimensions (meters)
+Lx = 0.50
+Ly = 0.47
+Lz = 0.50
+hx = Lx / 2
+hy = Ly / 2
+# Anchor points (top corners of frame)
+A1 = np.array([-hx, -hy, Lz])
+A2 = np.array([ hx, -hy, Lz])
+A3 = np.array([ hx,  hy, Lz])
+A4 = np.array([-hx,  hy, Lz])
+
+anchors = [A1, A2, A3, A4]
+
 
 def cable_lengths(P):
-    L1 = np.linalg.norm(P - A1)
-    L2 = np.linalg.norm(P - A2)
-    L3 = np.linalg.norm(P - A3)
-    L4 = np.linalg.norm(P - A4)
     
-    return np.array([L1, L2, L3, L4])
+    lengths = []
+
+    for A in anchors:
+        L = np.linalg.norm(P - A)
+        lengths.append(L)
+
+    return np.array(lengths)
